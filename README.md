@@ -8,7 +8,7 @@ Nicole can add patients and manage reminders for them. Contacts for the patient 
 
 ## Getting Started
 
-Check out Nicole at [refreshd](https://www.refreshd.com)
+Check out Nicole at [refreshd](https://www.refreshd.life)
 
 
 ## Built With
