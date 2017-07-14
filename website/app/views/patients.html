@@ -1,0 +1,11 @@
+<h1><a href="#!/home"><img src="images/house.png" style="height:1em"/></a> | <img src="images/user.png" style="height:1em"/></h1>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Patients</div>
+  <div class="panel-body">
+    <p><a class="btn btn-refreshd pull-right" href="#!/patient">Add Patient</a></p>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="patient in data.aws.patients"><span class="badge">Delete</span>{{ patient.patientName.S }}</li>
+  </ul>
+</div>

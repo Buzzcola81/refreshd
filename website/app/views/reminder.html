@@ -1,0 +1,124 @@
+<h1><a href="#!/home"><img src="images/house.png" style="height:1em"/></a> | <img src="images/calendar.png"
+                                                                                  style="height:1em"/></h1>
+<form name="putReminderForm" novalidate>
+  <div class="form-group">
+    <label for="patient">Patient</label>
+    <select id="patient" ng-model="data.patient" class="form-control"
+            ng-options="patient.patientName.S for patient in data.aws.patients" required>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="frequency">Frequency</label>
+    <select id="frequency" ng-model="data.frequency" class="form-control"
+            ng-options="frequency.label for frequency in data.frequencies" required>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="time">Time</label>
+    <div class="row" id="time">
+      <div class="col-xs-6">
+        <select id="hours" ng-model="data.hours" class="form-control" required>
+          <option ng-repeat="hour in [00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23]"
+                  value="{{hour}}">{{hour}}
+          </option>
+        </select>
+      </div>
+      <div class="col-xs-6">
+        <select id="minutes" ng-model="data.minutes" class="form-control" required>
+          <option
+            ng-repeat="minute in [00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59]"
+            value="{{minute}}">{{minute}}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" ng-show="data.frequency.label === 'Weekly'">
+    <label for="days">Day(s) of the Week</label>
+    <div id="days">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="mon" value="mon" ng-model="data.mon"> Monday
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" id="tue" value="tue" ng-model="data.tue"> Tuesday
+        </label>
+      </div>
+      <div class="checkbox"><label>
+        <input type="checkbox" id="wed" value="wed" ng-model="data.wed"> Wednesday
+      </label></div>
+      <div class="checkbox"><label>
+        <input type="checkbox" id="thu" value="thu" ng-model="data.thu"> Thursday
+      </label></div>
+      <div class="checkbox"><label>
+        <input type="checkbox" id="fri" value="fri" ng-model="data.fri"> Friday
+      </label></div>
+      <div class="checkbox"><label>
+        <input type="checkbox" id="sat" value="sat" ng-model="data.sat"> Saturday
+      </label></div>
+      <div class="checkbox"><label>
+        <input type="checkbox" id="sun" value="sun" ng-model="data.sun"> Sunday
+      </label></div>
+    </div>
+  </div>
+  <div class="form-group" ng-show="data.frequency.label === 'Monthly'">
+    <label for="monthly">Day Of Month</label>
+    <select id="monthly" ng-model="data.day" class="form-control"
+            ng-options="day.label for day in data.days">
+    </select>
+  </div>
+  <div class="form-group" ng-show="data.frequency.label === 'Yearly'">
+    <label for="yearly">Day and Month</label>
+    <div class="row" id="yearly">
+      <div class="col-xs-6">
+        <select ng-model="data.day" class="form-control"
+                ng-options="day.label for day in data.days">
+        </select>
+      </div>
+      <div class="col-xs-6">
+        <select ng-model="data.month" class="form-control"
+                ng-options="month.label for month in data.months">
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="form-group" ng-show="data.frequency.label === 'Once'">
+    <label for="once">Day, Month and Year</label>
+    <div class="row" id="once">
+      <div class="col-xs-4">
+        <select ng-model="data.day" class="form-control"
+                ng-options="day.label for day in data.days">
+        </select>
+      </div>
+      <div class="col-xs-4">
+        <select ng-model="data.month" class="form-control"
+                ng-options="month.label for month in data.months">
+        </select>
+      </div>
+      <div class="col-xs-4">
+        <select ng-model="data.year" class="form-control"
+                ng-options="year.label for year in data.years">
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="message">Reminder Message</label>
+    <div class="form-group">
+      <input id="message" type="text" class="form-control" ng-model="data.message" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"> Request Confirmation
+      </label>
+  </div>
+  <br/>
+  <button type="submit" class="btn btn-refreshd" ng-click="putReminder()" ng-disabled="putReminderForm.$invalid">Add
+    Reminder
+  </button>
+  <a type="button" class="btn btn-danger" href="#!/home">Cancel</a>
+</form>

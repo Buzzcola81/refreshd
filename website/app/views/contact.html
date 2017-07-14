@@ -1,0 +1,25 @@
+<h1><a href="#!/home"><img src="images/house.png" style="height:1em"/></a> | <img src="images/newcontact.png"
+                                                                                  style="height:1em"/></h1>
+<form name="putContactForm" novalidate>
+  <div class="form-group">
+    <label for="patient">Patient</label>
+    <select id="patient" ng-model="data.patient" class="form-control"
+            ng-options="patient.patientName.S for patient in data.aws.patients" required>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="contactFirstName">Contact Name</label>
+    <input type="text" id="contactFirstName" ng-model="data.firstName" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="tel">Contact Number</label>
+    <div class="input-group" id="tel">
+      <span class="input-group-addon">+61</span>
+      <input type="tel" ng-model="data.tel" class="form-control" ng-minlength="9" ng-maxlength="9" required>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-refreshd" ng-click="putContact()" ng-disabled="putContactForm.$invalid">Add
+    Contact
+  </button>
+  <a type="button" class="btn btn-danger" href="#!/home">Cancel</a>
+</form>

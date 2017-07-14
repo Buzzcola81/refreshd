@@ -1,0 +1,11 @@
+<h1><a href="#!/home"><img src="images/house.png" style="height:1em"/></a> | <img src="images/calendar.png"
+                                                                                  style="height:1em"/></h1>
+<div class="panel panel-default">
+  <div class="panel-heading">Reminders</div>
+  <div class="panel-body">
+    <p><a class="btn btn-refreshd pull-right" href="#!/reminder">Add Reminder</a></p>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="reminder in data.aws.reminders"><span class="badge">Delete</span>{{reminder.time.S}} {{reminder.message.S}}</li>
+  </ul>
+</div>

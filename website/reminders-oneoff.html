@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Refreshd</title>
+
+  <!-- Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1>Once off Reminder</h1>
+
+<div class="container">
+
+  <div class="row">
+    <label for="inputdate">Select a Date:</label>
+    <input id="inputdate" type="date">
+
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="row">
+    <label for="inputtime">Select a Time:</label>
+    <input id="inputtime" type="time">
+  </div>
+</div>
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" onclick="addreminder()" class="btn btn-default">Add Reminder</button>
+  <button type="button" class="btn btn-default">Back</button>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.71.0.min.js"></script>
+
+<script>
+  function addreminder() {
+    // Initialize the Amazon Cognito credentials provider
+    AWS.config.region = 'us-east-1'; // Region
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: 'us-east-1:xxxxxx'
+    });
+    var dynamodb = new AWS.DynamoDB();
+    const inputdate = document.getElementById("inputdate").value;
+    var dateresult = inputdate.split('-');
+    var year = dateresult[0];
+    var month = dateresult[1];
+    var day = dateresult[2];
+    const inputtime = document.getElementById("inputtime").value;
+    var modinputtime = inputtime.replace(':', '');
+    var comments = "Get your hair dyed pink";
+    var spokenmessage = "You have an appointment to get your hair dyed pink";
+    var patientId = "Bob-1234";
+    var patientfrequency = patientId + year + month + day;
+
+
+    var params = {
+      Item: {
+        "PatientId": {
+          S: patientId
+        },
+        "RemindTime": {
+          S: modinputtime
+        },
+        "PatientFrequency": {
+          S: patientfrequency
+        },
+        "Day": {
+          S: day
+        },
+        "Month": {
+          S: month
+        },
+        "Year": {
+          S: year
+        },
+        "Comments": {
+          S: comments
+        },
+        "Context": {
+          S: spokenmessage
+        }
+      },
+      TableName: "Reminders"
+    };
+    dynamodb.putItem(params, function (err, data) {
+      if (err) console.log(err, err.stack); // an error occurred
+      else     console.log(data);           // successful response
+      /*
+       data = {
+       ConsumedCapacity: {
+       CapacityUnits: 1,
+       TableName: "Music"
+       }
+       }
+       */
+    });
+  }
+</script>
+</body>
+</html>

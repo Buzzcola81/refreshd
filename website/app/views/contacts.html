@@ -1,0 +1,11 @@
+<h1><a href="#!/home"><img src="images/house.png" style="height:1em"/></a> | <img src="images/newcontact.png"
+                                                                                  style="height:1em"/></h1>
+<div class="panel panel-default">
+  <div class="panel-heading">Contacts</div>
+  <div class="panel-body">
+    <p><a class="btn btn-refreshd pull-right" href="#!/contact">Add Contact</a></p>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="contact in data.aws.contacts"><span class="badge">Delete</span>{{ contact.contactName.S }}</li>
+  </ul>
+</div>

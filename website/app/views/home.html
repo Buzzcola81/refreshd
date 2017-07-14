@@ -1,0 +1,18 @@
+<h1><img src="images/house.png" style="height:1em"/></h1>
+<div class="row">
+  <div class="col-sm-4 row-image">
+    <img src="images/user.png"/>
+    <button class="btn btn-info" ng-click="openPatients()">Patients</button>
+    <span>Manage contact details for your patients</span>
+  </div>
+  <div class="col-sm-4 row-image">
+    <img src="images/calendar.png"/>
+    <button class="btn btn-info" ng-disabled="data.aws.patients.length === 0" ng-click="openReminders()">Reminders</button>
+    <span>Schedule calls to send reminders</span>
+  </div>
+  <div class="col-sm-4 row-image">
+    <img src="images/newcontact.png"/>
+    <button class="btn btn-info" ng-disabled="data.aws.patients.length === 0" ng-click="openContacts()">Contacts</button>
+    <span>Create phone contacts</span>
+  </div>
+</div>

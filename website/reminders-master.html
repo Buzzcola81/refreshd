@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Refreshd</title>
+
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body onload="listPatient()">
+
+<center><h1>Add Reminder</h1></center>
+
+<center><label for="patientList">Your Patient Name</label></center>
+<ul id="patientList"></ul>
+
+<center><label for="description">Description</label></center>
+<center><div class="input-group">
+  <input type="text" class="form-control" id="description" aria-describedby="basic-addon3">
+</div></center>
+
+<center><label for="voicemessage">Voice Message</label></center>
+<center><div class="input-group">
+  <input type="text" class="form-control" id="voicemessage" aria-describedby="basic-addon3">
+</div></center>
+
+
+<ul id="frequency">Frequency</ul>
+<li><a href="#/nameoffile.html"></a>Once Off</li>
+<li><a href="#/nameoffile.html"></a>Daily</li>
+<li><a href="#/nameoffile.html"></a>Week Days</li>
+<li><a href="#/nameoffile.html"></a>Monthly</li>
+<li><a href="#/nameoffile.html"></a>Yearly</li>
+
+
+<h1>Once off Reminder</h1>
+
+<div class="container">
+
+  <div class="row">
+    <label for="date">Select a Date:</label>
+    <input id="date" type="date">
+
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="row">
+    <label for="time">Select a Time:</label>
+    <input id="time" type="time">
+  </div>
+</div>
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">Add Reminder</button>
+  <button type="button" class="btn btn-default">Back</button>
+</div>
+
+
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.71.0.min.js"></script>
+<script>
+  function listPatient() {
+    // Initialize the Amazon Cognito credentials provider
+    AWS.config.region = 'us-east-1'; // Region
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: 'us-east-1:xxxxxxxx',
+    });
+    var dynamodb = new AWS.DynamoDB();
+    var params = {
+      ExpressionAttributeValues: {
+        ":v1": {
+          S: "martin"
+        }
+      },
+      KeyConditionExpression: "carerId = :v1",
+
+      TableName: "Patient"
+    };
+    dynamodb.query(params, function (err, data) {
+      if (err) console.log(err, err.stack); // an error occurred
+      else     console.log(data);           // successful response
+
+
+      var index, len;
+      var listhtml = "";
+      for (index = 0, len = data.Items.length; index < len; ++index) {
+        console.log(data.Items[index].carerId.S);
+        console.log(data.Items[index].patientId.S);
+        console.log(data.Items[index].phoneNumber.S);
+        listhtml += "<li><a href=\"#/nameoffile.html\">" + data.Items[index].patientName.S  + "</a></li>"
+      }
+      //document.getElementById("patientList").innerHTML = '<li><a href="#/nameoffile.html">hello</a></li>'
+      document.getElementById("patientList").innerHTML = listhtml;
+    });
+
+  }
+</script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

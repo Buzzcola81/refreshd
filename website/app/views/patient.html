@@ -1,0 +1,27 @@
+<h1><a href="#!/home"><img src="images/house.png" style="height:1em"/></a> | <img src="images/newuser.png"
+                                                                                  style="height:1em"/></h1>
+<form name="putPatientForm" novalidate>
+  <div class="form-group">
+    <label for="patientFirstName">Patient Name</label>
+    <input type="text" id="patientFirstName" ng-model="data.firstName" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="tel">Phone Number</label>
+    <div class="input-group" id="tel">
+      <span class="input-group-addon">+61</span>
+      <input type="tel" ng-model="data.tel" class="form-control" ng-minlength="9" ng-maxlength="9" required>
+    </div>
+  </div>
+  <!--<div class="form-group">
+    <label>
+      Preferred Voice
+      <input type="radio" name="voice" value="male" ng-model="data.voice" required/>Male
+      <input type="radio" name="voice" value="female" ng-model="data.voice" required/>Female
+    </label>
+  </div>-->
+  <br/>
+  <button type="submit" class="btn btn-refreshd" ng-click="putPatient()" ng-disabled="putPatientForm.$invalid">Add
+    Patient
+  </button>
+  <a type="button" class="btn btn-danger" href="#!/home">Cancel</a>
+</form>
