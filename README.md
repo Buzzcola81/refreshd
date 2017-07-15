@@ -17,7 +17,7 @@ Check out Nicole at [refreshd](https://www.refreshd.life)
 * [Lambda](https://aws.amazon.com/lambda/) - Execute Application Code.
 * [Cognito](https://aws.amazon.com/cognito/) - Facebook Login Integration.
 * [DynamoDB](https://aws.amazon.com/dynamodb/) - Backend.
-
+* [S3](https://aws.amazon.com/s3/) - Website hosting
 
 ## Authors
 
