@@ -1,0 +1,127 @@
+{
+  "name": "refreshd",
+  "description": ".",
+  "intents": [
+    {
+      "intentName": "AddressBook",
+      "intentVersion": "5"
+    },
+    {
+      "intentName": "time",
+      "intentVersion": "1"
+    }
+  ],
+  "clarificationPrompt": {
+    "messages": [
+      {
+        "contentType": "PlainText",
+        "content": "Sorry, what can I help you with?"
+      }
+    ],
+    "maxAttempts": 2,
+    "responseCard": null
+  },
+  "abortStatement": {
+    "messages": [
+      {
+        "contentType": "PlainText",
+        "content": "Sorry, I'm not able to assist at this time"
+      }
+    ],
+    "responseCard": null
+  },
+  "status": "READY",
+  "failureReason": null,
+  "lastUpdatedDate": "2017-07-11T11:15:37.445Z",
+  "createdDate": "2017-06-21T12:15:43.820Z",
+  "idleSessionTTLInSeconds": 60,
+  "voiceId": "Salli",
+  "checksum": "c8c3a031-2650-4531-b218-4b3ed192af36",
+  "version": "$LATEST",
+  "locale": "en-US",
+  "childDirected": false,
+  "dependencies": {
+    "intents": [
+      {
+        "name": "time",
+        "description": null,
+        "slots": [],
+        "sampleUtterances": [
+          "Please tell me the time",
+          "What time is it",
+          "What's the time",
+          "What time is it now",
+          "When is it"
+        ],
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-07-11T11:15:13.877Z",
+        "createdDate": "2017-07-11T11:15:13.877Z",
+        "version": "1",
+        "checksum": "bf64cbc7-cdbc-4ff4-b0db-a2c244cc0d94"
+      },
+      {
+        "name": "AddressBook",
+        "description": null,
+        "slots": [
+          {
+            "name": "firstName",
+            "description": null,
+            "slotConstraint": "Required",
+            "slotType": "AMAZON.US_FIRST_NAME",
+            "slotTypeVersion": null,
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Who should I call?"
+                }
+              ],
+              "maxAttempts": 2,
+              "responseCard": null
+            },
+            "priority": 1,
+            "sampleUtterances": [],
+            "responseCard": null
+          }
+        ],
+        "sampleUtterances": [
+          "I would like to make a call",
+          "Please make a call",
+          "I would like to place a call",
+          "Please call"
+        ],
+        "confirmationPrompt": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Are you sure you'd like me to call {firstName}?"
+            }
+          ],
+          "maxAttempts": 3,
+          "responseCard": null
+        },
+        "rejectionStatement": {
+          "messages": [
+            {
+              "contentType": "PlainText",
+              "content": "Okay."
+            }
+          ],
+          "responseCard": null
+        },
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "parentIntentSignature": null,
+        "lastUpdatedDate": "2017-07-04T12:13:32.754Z",
+        "createdDate": "2017-07-04T12:13:32.754Z",
+        "version": "5",
+        "checksum": "6283d8ca-df2d-4399-a1ba-bbac19bd28e1"
+      }
+    ],
+    "slotTypes": []
+  }
+}
